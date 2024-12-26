@@ -13,6 +13,7 @@
 // Start of Carlos C++  ---------------------------------------
 #include "BcBitboard.hpp"
 #include "BcMove.hpp"
+#include "BcTime.hpp"
 // End of Carlos C++  ---------------------------------------
 
 
@@ -46,7 +47,7 @@ int turn = 0;
 void PrintResult();
 void NewGame();
 void SetMaterial();
-void SetBits();
+
 
 extern int move_start, move_dest;
 
@@ -54,7 +55,7 @@ int main() {
 	BcBitboard bb;
 
 	//SetBits();
-	bb.SetBits();
+	bb.initSetBits();
 
 
 	printf("Bills Bitboard Chess Engine\n");
@@ -112,7 +113,7 @@ int main() {
 
 			SetMaterial();
 
-			t = GetTime() - start_time;
+			t = BcTime::GetTime() - start_time;
 			printf("\nTime: %d ms\n", t);
 			if (t > 0)
 				nps = (double) nodes / (double) t;

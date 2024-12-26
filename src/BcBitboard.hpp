@@ -34,18 +34,18 @@ class BcBitboard {
 
 	// Initialization method
 	//@TODO Rename
-	void SetRowCol();
+	void initSetRowCol();
 
 
 
 
 
 	// @TODO Rename to Initialize
-	void SetBits();
+	void initSetBits();
 
 	// Initialization method
 	// @TODO rename
-	void SetBetweenVector();
+	void initSetBetweenVector();
 
 	//returns the edge square when moving in a certain direction. There are 8 possible directions from a square.
 	//
@@ -63,7 +63,7 @@ class BcBitboard {
 
 	// Initialization method
 	//@TODO Rename
-	void SetRanks();
+	void initSetRanks();
 
 	static int NextBit(BITBOARD bb);
 	int NextBit2(BITBOARD bb);

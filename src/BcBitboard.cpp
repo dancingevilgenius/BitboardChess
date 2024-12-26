@@ -29,7 +29,7 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 
 	// Initialization method
 	//@TODO Rename
-	void BcBitboard::SetRowCol() {
+	void BcBitboard::initSetRowCol() {
 		for (int x = 0; x < NUM_SQUARES; x++) {
 			if (col[x] < 2)
 				SetBit(mask_queenside, x);
@@ -67,9 +67,9 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 
 
 	// @TODO Rename to Initialize
-	void BcBitboard::SetBits() {
-		SetRanks();
-		SetRowCol();
+	void BcBitboard::initSetBits() {
+		initSetRanks();
+		initSetRowCol();
 
 		// Set all of the following bitboards to zero/empty
 		memset(bit_pawncaptures, 0, sizeof(bit_pawncaptures));
@@ -80,7 +80,7 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 		memset(bit_queenmoves, 0, sizeof(bit_queenmoves));
 		memset(bit_kingmoves, 0, sizeof(bit_kingmoves));
 
-
+		// In Bitboard Chess Engine this for loop is extracted into SetPawnBits() function
 		for (int x = 0; x < NUM_SQUARES; x++) {
 			SetBit(mask[x], x);
 			not_mask[x] = ~mask[x];
@@ -144,7 +144,7 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 					SetBit(mask_cols[x], y);
 			}
 
-		SetBetweenVector();
+		initSetBetweenVector();
 
 		not_a_file = ~mask_cols[0];
 		not_h_file = ~mask_cols[7];
@@ -152,7 +152,7 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 
 	// Initialization method
 	// @TODO rename
-	void BcBitboard::SetBetweenVector() {
+	void BcBitboard::initSetBetweenVector() {
 		int x, y;
 		int z;
 		for (x = 0; x < NUM_SQUARES; x++)
@@ -273,10 +273,10 @@ const int lsb_64_table[NUM_SQUARES] = { 63, 30, 3, 32, 59, 14, 11, 33, 60, 24, 5
 
 	// Initialization method
 	//@TODO Rename
-	void BcBitboard::SetRanks() {
+	void BcBitboard::initSetRanks() {
 		for (int x = 0; x < NUM_SQUARES; x++) {
-			rank[0][x] = row[x];
-			rank[1][x] = 7 - row[x];
+			rank[SIDE_WHITE][x] = row[x];
+			rank[SIDE_BLACK][x] = 7 - row[x];
 		}
 	}
 

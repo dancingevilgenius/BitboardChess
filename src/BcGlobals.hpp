@@ -16,6 +16,8 @@ void ShowAll(int ply);
 
 // Start Added by Carlos ----------------------------------------------------
 #define NUM_SQUARES 64
+#define SIDE_WHITE 0
+#define SIDE_BLACK 1
 #define NUM_SIDES 2
 // End Added by Carlos  ------------------------------------------------------
 
@@ -110,8 +112,8 @@ void ShowAll(int ply);
 #define EMPTY 6
 #define NUM_PIECES 7// Added by Carlos
 
-#define White 0
-#define Black 1
+//#define White 0
+//#define Black 1
 
 #define MAX_PLY 64
 #define MOVE_STACK 4000
